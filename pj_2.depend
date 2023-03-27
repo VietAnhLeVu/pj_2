@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1679889268 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\main.cpp
+	"Texture.h"
+	"CommonFunc.h"
+	"Object.h"
+	"Timer.h"
+	"stage.h"
+
+1679885002 c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.h
+	"CommonFunc.h"
+
+1679884038 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<vector>
+	<string>
+	<SDL_ttf.h>
+	<sstream>
+	<fstream>
+
+1679889081 c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.h
+	"Texture.h"
+	"CommonFunc.h"
+
+1679889954 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.cpp
+	"Object.h"
+
+1679813586 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.cpp
+	"CommonFunc.h"
+
+1679885002 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.cpp
+	"Texture.h"
+
+1679268582 c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.h
+
+1679812099 c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.h
+	"Texture.h"
+	"Object.h"
+	"CommonFunc.h"
+
+1679812099 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.cpp
+	"menu.h"
+
+1679889535 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
+	"stage.h"
+
+1679887073 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
+	"CommonFunc.h"
+	"Texture.h"
+	"Object.h"
+
