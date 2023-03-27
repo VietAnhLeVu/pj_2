@@ -5,6 +5,8 @@ Object::Object()
 frame = 0;
 pos.x = 640;
 pos.y = 320;
+pos.h = 64;
+pos.w = 64;
 
 }
 
@@ -35,25 +37,29 @@ SDL_Rect* Object::GetSpriteClips()
     return SpriteClips[frame%12];
 }
 
-void Object::HandleEvent(const SDL_Event& e)
+void Object::HandleEvent(SDL_Event& e)
 {
     if(e.type == SDL_KEYDOWN)
     {
         switch(e.key.keysym.sym)
         {
         case SDLK_RIGHT:
+            if(action_type == -1)
             action_type = MOVERIGHT;
             //status = MOVERIGHT;
             break;
         case SDLK_LEFT:
+            if(action_type == -1)
             action_type = MOVELEFT;
             //status = MOVELEFT;
             break;
         case SDLK_UP:
+            if(action_type == -1)
             action_type = MOVEUP;
             //status = MOVEUP;
             break;
         case SDLK_DOWN:
+            if(action_type == -1)
             action_type = MOVEDOWN;
             //status = MOVEDOWN;
             break;
@@ -78,9 +84,14 @@ void Object::HandleEvent(const SDL_Event& e)
         default:
             break;
         }
-
+        // Prevent other keys from being taken in
+    while (SDL_PollEvent(&e)) {
+            if (e.type == SDL_KEYDOWN) {
+                continue;
+            }
+    }
     }else if(e.type == SDL_KEYUP)
-    {
+    {   if(action_type != -1)
         action_type = -1;
     }
 }

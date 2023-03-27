@@ -28,6 +28,7 @@ public:
 private:
     Tile_type block[20];
     int stage_block[11][20];
+    SDL_Rect stage_block_rect[11][20];
     SDL_Rect dest;
 };
 

@@ -49,33 +49,72 @@ void Stage::DrawStage(SDL_Renderer* gRenderer)
         for(int j = 0;j<MAX_HORIZONTAL_BLOCK;j++)
         {
            int type = stage_block[i][j];
-           dest.x = j*64;
-           dest.y = i*64;
+           dest.x = stage_block_rect[i][j].x = j*64;
+           dest.y = stage_block_rect[i][j].y =i*64;
+           stage_block_rect[i][j].w = 64;
+           stage_block_rect[i][j].h = 64;
+
            block[type].render(dest.x,dest.y,gRenderer,NULL);
          }
     }
 }
 
 void Stage::CheckStageCollision(Object& player)
-{
+{   /*
     int now_pos_y = (player.GetX())/64;
     int now_pos_x = (player.GetY())/64;
+    int now_pos_x2 = (player.GetY()+63)/64;
+    int now_pos_y2 = (player.GetX() + 63)/64;
+    const SDL_Rect* s1 = &stage_block_rect[now_pos_x][now_pos_y];
+    const SDL_Rect s = player.GetPosRect();
+    const SDL_Rect* s2 = &s;
     switch(player.GetStatus())
     {
   case Object::MOVELEFT:
-    if(stage_block[now_pos_x][now_pos_y] != 0)
+      if(stage_block[now_pos_x][now_pos_y])
+      if(!SDL_IntersectRect(s1,s2,NULL))
         player.Manual_MoveObject(player.GetX()+64,player.GetY());
     break;
   case Object::MOVERIGHT:
-    if(stage_block[now_pos_x][now_pos_y] != 0)
+        if(stage_block[now_pos_x][now_pos_y])
+        if(!SDL_IntersectRect(s1,s2,NULL))
         player.Manual_MoveObject(player.GetX()-64,player.GetY());
     break;
   case Object::MOVEUP:
-    if(stage_block[now_pos_x][now_pos_y] != 0)
+      if(stage_block[now_pos_x][now_pos_y])
+      if(!SDL_IntersectRect(s1,s2,NULL))
         player.Manual_MoveObject(player.GetX(),player.GetY()+64);
     break;
   case Object::MOVEDOWN:
-    if(stage_block[now_pos_x][now_pos_y] != 0)
+      if(stage_block[now_pos_x][now_pos_y])
+      if(!SDL_IntersectRect(s1,s2,NULL))
+        player.Manual_MoveObject(player.GetX(),player.GetY()-64);
+    break;
+  default:
+    break;
+    };
+    */
+    int now_pos_y = (player.GetX())/64;
+    int now_pos_x = (player.GetY())/64;
+    int now_pos_x2 = (player.GetY()+63)/64;
+    int now_pos_y2 = (player.GetX() + 63)/64;
+
+    switch(player.GetStatus())
+    {
+  case Object::MOVELEFT:
+    if(stage_block[now_pos_x][now_pos_y] != 0 || stage_block[now_pos_x2][now_pos_y] != 0 || stage_block[now_pos_x][now_pos_y2] != 0 || stage_block[now_pos_x2][now_pos_y2] != 0)
+        player.Manual_MoveObject(player.GetX()+64,player.GetY());
+    break;
+  case Object::MOVERIGHT:
+    if(stage_block[now_pos_x][now_pos_y] != 0 || stage_block[now_pos_x2][now_pos_y] != 0 || stage_block[now_pos_x][now_pos_y2] != 0 || stage_block[now_pos_x2][now_pos_y2] != 0)
+        player.Manual_MoveObject(player.GetX()-64,player.GetY());
+    break;
+  case Object::MOVEUP:
+    if(stage_block[now_pos_x][now_pos_y] != 0 || stage_block[now_pos_x2][now_pos_y] != 0 || stage_block[now_pos_x][now_pos_y2] != 0 || stage_block[now_pos_x2][now_pos_y2] != 0)
+        player.Manual_MoveObject(player.GetX(),player.GetY()+64);
+    break;
+  case Object::MOVEDOWN:
+    if(stage_block[now_pos_x][now_pos_y] != 0 || stage_block[now_pos_x2][now_pos_y] != 0 || stage_block[now_pos_x][now_pos_y2] != 0 || stage_block[now_pos_x2][now_pos_y2] != 0)
         player.Manual_MoveObject(player.GetX(),player.GetY()-64);
     break;
   default:

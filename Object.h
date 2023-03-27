@@ -56,7 +56,7 @@ public:
 
     SDL_Rect* GetSpriteClips();
 
-virtual void HandleEvent(const SDL_Event& e);
+virtual void HandleEvent(SDL_Event& e);
 
     void MoveObject();
 
@@ -64,6 +64,11 @@ virtual void HandleEvent(const SDL_Event& e);
     {
         pos.x = x;
         pos.y = y;
+    }
+
+    SDL_Rect GetPosRect()
+    {
+        return pos;
     }
 private:
 
