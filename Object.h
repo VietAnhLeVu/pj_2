@@ -70,8 +70,12 @@ virtual void HandleEvent(SDL_Event& e);
     {
         return pos;
     }
+    int Get_Pressed()
+    {
+        return pressed;
+    }
 private:
-
+    int pressed = 0;
     std::vector <SDL_Rect*> SpriteClips;
     int frame;
     SDL_Event O_event;

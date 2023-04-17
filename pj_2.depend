@@ -1,15 +1,11 @@
 # depslib dependency file v1.0
-1679918432 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\main.cpp
-	"Texture.h"
-	"CommonFunc.h"
-	"Object.h"
-	"Timer.h"
-	"stage.h"
+1681714267 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\main.cpp
+	"game.h"
 
 1679885002 c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.h
 	"CommonFunc.h"
 
-1679884038 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
+1681739085 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -18,12 +14,14 @@
 	<SDL_ttf.h>
 	<sstream>
 	<fstream>
+	<algorithm>
+	<SDL_mixer.h>
 
-1679918350 c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.h
+1681654482 c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.h
 	"Texture.h"
 	"CommonFunc.h"
 
-1679918662 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.cpp
+1681654897 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.cpp
 	"Object.h"
 
 1679813586 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.cpp
@@ -32,7 +30,8 @@
 1679885002 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.cpp
 	"Texture.h"
 
-1679268582 c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.h
+1681436167 c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.h
+	"CommonFunc.h"
 
 1679812099 c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.h
 	"Texture.h"
@@ -42,11 +41,32 @@
 1679812099 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.cpp
 	"menu.h"
 
-1679918703 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
+1681740703 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
 	"stage.h"
 
-1679917082 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
+1681717472 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
 	"CommonFunc.h"
 	"Texture.h"
 	"Object.h"
+
+1681372939 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\rule.cpp
+	"Rule.h"
+
+1681371568 c:\mingw\bin\c++\do hoa\pj_2\pj_2\rule.h
+	"CommonFunc.h"
+	"stage.h"
+	"Object.h"
+
+1681740150 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.cpp
+	"game.h"
+
+1681651848 c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.h
+	"Texture.h"
+	"CommonFunc.h"
+	"Object.h"
+	"stage.h"
+	"Timer.h"
+
+1681436147 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.cpp
+	"Timer.h"
 

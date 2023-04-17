@@ -9,24 +9,73 @@
 class Tile_type : public Object
 {
 public:
-    Tile_type(){;}
-    ~Tile_type(){;}
+    Tile_type() {;}
+    ~Tile_type() {;}
 };
 
 class Stage
 {
 public:
     Stage();
-    ~Stage(){;}
-
+    ~Stage() {;}
+    enum StageMoveType
+    {
+        MOVELEFT,
+        MOVERIGHT,
+        MOVEDOWN,
+        MOVEUP,
+    };
+// rule for baba
+    bool baba_is_you = false;
+    bool baba_is_win = false;
+    bool baba_is_stop = false;
+    bool baba_is_push = false;
+    bool baba_is_flag = false;
+    bool baba_is_wall = false;
+    bool baba_is_rock = false;
+// rule for flag
+    bool flag_is_you = false;
+    bool flag_is_win = false;
+    bool flag_is_stop = false;
+    bool flag_is_push = false;
+    bool flag_is_baba = false;
+    bool flag_is_wall = false;
+    bool flag_is_rock = false;
+// rule for wall
+    bool wall_is_you = false;
+    bool wall_is_win = false;
+    bool wall_is_stop = false;
+    bool wall_is_push = false;
+    bool wall_is_flag = false;
+    bool wall_is_baba = false;
+    bool wall_is_rock = false;
+// rule for rock
+    bool rock_is_you = false;
+    bool rock_is_win = false;
+    bool rock_is_stop = false;
+    bool rock_is_push = false;
+    bool rock_is_flag = false;
+    bool rock_is_wall = false;
+    bool rock_is_baba = false;
     void LoadStage(std::string file_path);
 
     void LoadTiles(SDL_Renderer* gRenderer);
     void DrawStage(SDL_Renderer* gRenderer);
-    void CheckStageCollision(Object& player);
 
+    //RULE
+    void CheckStageCollision(Object& player,int ObjectType);
+    bool CheckStagePush(Object& player,int ObjectType);
+
+    void Copy_Stage_Block(int facsimile[][MAX_HORIZONTAL_BLOCK]);
+
+    void HandleEvent(SDL_Event& e);
+    void MoveStageTile(int ObjectType);
+    void RestartRule();
+    bool CheckWin(Object& player,int ObjectType);
+    void ChangeBlock(int ObjectType_src,int ObjectType_dst);
 private:
-    Tile_type block[20];
+    int action_type = -1;
+    Tile_type block[MAX_BLOCK_TYPE];
     int stage_block[11][20];
     SDL_Rect stage_block_rect[11][20];
     SDL_Rect dest;
