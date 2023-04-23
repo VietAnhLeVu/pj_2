@@ -126,7 +126,7 @@ void Stage::CheckStageCollision(Object& player,int ObjectType)
 }
 
 
-bool Stage::CheckStagePush(Object& player,int ObjectType)
+void Stage::CheckStagePush(Object& player,int ObjectType)
 {
     int now_pos_y = (player.GetX()+1)/64;
     int now_pos_x = (player.GetY()+1)/64;
@@ -177,7 +177,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                     int current_air_y = now_pos_y-block_check;
                     while(block_check != -1)
                     {
-                        if(stage_block[now_pos_x][now_pos_y-block_check] >= IS_TEXT && stage_block[now_pos_x][now_pos_y-block_check] <=WALL_TEXT)
+                        if(stage_block[now_pos_x][now_pos_y-block_check] >= IS_TEXT && stage_block[now_pos_x][now_pos_y-block_check] <=SKULL_TEXT)
                         {
                             std::swap(stage_block[now_pos_x][now_pos_y-block_check],stage_block[now_pos_x][current_air_y]);
                             current_air_y = now_pos_y-block_check;
@@ -203,10 +203,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                                 else if(stage_block[now_pos_x][now_pos_y-block_check] >= HORIZONTAL_WALL && stage_block[now_pos_x][now_pos_y-block_check] <= WALL_BLOCK)
                                 {
@@ -215,10 +212,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                             }
                             break;
@@ -241,10 +235,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                                 else if(stage_block[now_pos_x][now_pos_y-block_check] >= HORIZONTAL_WALL && stage_block[now_pos_x][now_pos_y-block_check] <= WALL_BLOCK)
                                 {
@@ -253,10 +244,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                             }
                             break;
@@ -283,10 +271,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                                 else if(stage_block[now_pos_x][now_pos_y-block_check+1] == FLAG)
                                 {
@@ -295,10 +280,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y-block_check+1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y-block_check + 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                             }
                         }
@@ -358,7 +340,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                     int current_air_y = now_pos_y+block_check;
                     while(block_check != -1)
                     {
-                        if(stage_block[now_pos_x][now_pos_y+block_check] >= IS_TEXT && stage_block[now_pos_x][now_pos_y+block_check] <= WALL_TEXT)
+                        if(stage_block[now_pos_x][now_pos_y+block_check] >= IS_TEXT && stage_block[now_pos_x][now_pos_y+block_check] <= SKULL_TEXT)
                         {
                             std::swap(stage_block[now_pos_x][now_pos_y+block_check],stage_block[now_pos_x][current_air_y]);
                             current_air_y = now_pos_y+block_check;
@@ -452,10 +434,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y+block_check-1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y+block_check-1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                                 else if(stage_block[now_pos_x][now_pos_y-block_check+1] == FLAG)
                                 {
@@ -464,10 +443,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x][now_pos_y+block_check-1],stage_block[now_pos_x][current_air_y]);
                                         current_air_y = now_pos_y+block_check - 1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                             }
                         }
@@ -525,7 +501,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                     int current_air_x = now_pos_x-block_check;
                     while(block_check != -1)
                     {
-                        if(stage_block[now_pos_x-block_check][now_pos_y] >= IS_TEXT && stage_block[now_pos_x-block_check][now_pos_y] <= WALL_TEXT)
+                        if(stage_block[now_pos_x-block_check][now_pos_y] >= IS_TEXT && stage_block[now_pos_x-block_check][now_pos_y] <= SKULL_TEXT)
                         {
                             std::swap(stage_block[now_pos_x-block_check][now_pos_y],stage_block[current_air_x][now_pos_y]);
                             current_air_x = now_pos_x-block_check;
@@ -619,10 +595,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x-block_check+1][now_pos_y],stage_block[current_air_x][now_pos_y]);
                                         current_air_x = now_pos_x-block_check+1;
                                     }
-                                    else
-                                    {
 
-                                    }
                                 }
                                 else if(stage_block[now_pos_x-block_check+1][now_pos_y] == FLAG)
                                 {
@@ -630,10 +603,6 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                     {
                                         std::swap(stage_block[now_pos_x-block_check+1][now_pos_y],stage_block[current_air_x][now_pos_y]);
                                         current_air_x = now_pos_x-block_check + 1;
-                                    }
-                                    else
-                                    {
-
                                     }
                                 }
                             }
@@ -690,7 +659,7 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                     int current_air_x = now_pos_x+block_check;
                     while(block_check != -1)
                     {
-                        if(stage_block[now_pos_x+block_check][now_pos_y] >= IS_TEXT && stage_block[now_pos_x+block_check][now_pos_y] <= WALL_TEXT)
+                        if(stage_block[now_pos_x+block_check][now_pos_y] >= IS_TEXT && stage_block[now_pos_x+block_check][now_pos_y] <= SKULL_TEXT)
                         {
                             std::swap(stage_block[now_pos_x+block_check][now_pos_y],stage_block[current_air_x][now_pos_y]);
                             current_air_x = now_pos_x+block_check;
@@ -784,10 +753,6 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                         std::swap(stage_block[now_pos_x+block_check-1][now_pos_y],stage_block[current_air_x][now_pos_y]);
                                         current_air_x = now_pos_x+block_check-1;
                                     }
-                                    else
-                                    {
-
-                                    }
                                 }
                                 else if(stage_block[now_pos_x+block_check-1][now_pos_y] == FLAG)
                                 {
@@ -795,10 +760,6 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
                                     {
                                         std::swap(stage_block[now_pos_x+block_check-1][now_pos_y],stage_block[current_air_x][now_pos_y]);
                                         current_air_x = now_pos_x+block_check - 1;
-                                    }
-                                    else
-                                    {
-
                                     }
                                 }
                             }
@@ -816,7 +777,6 @@ bool Stage::CheckStagePush(Object& player,int ObjectType)
     default:
         break;
     };
-
 }
 
 void Stage::Copy_Stage_Block(int facsimile[][MAX_HORIZONTAL_BLOCK])
@@ -884,8 +844,113 @@ void Stage::MoveStageTile(int ObjectType)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
                     {
-                        if(j != MAX_HORIZONTAL_BLOCK-1)
-                            std::swap(stage_block[i][j],stage_block[i][j+1]);
+                        if(j != MAX_HORIZONTAL_BLOCK-1 && (stage_block[i][j+1] < HORIZONTAL_WALL || stage_block[i][j+1] > WALL_BLOCK))
+                        {
+                            if(stage_block[i][j+1] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i][j+1]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i][j+block_check] != AIR && j+block_check < MAX_HORIZONTAL_BLOCK)
+                                {
+                                    switch(stage_block[i][j+block_check])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i][j+block_check] >=HORIZONTAL_WALL && stage_block[i][j+block_check] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(j+block_check < MAX_HORIZONTAL_BLOCK)
+                                {
+                                    int current_air = j+block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i][j+block_check])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i][j+block_check] >= HORIZONTAL_WALL && stage_block[i][j+block_check] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push || wall_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i][j+block_check] >= IS_TEXT && stage_block[i][j+block_check] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                            current_air = j+block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
 
                 }
@@ -894,7 +959,112 @@ void Stage::MoveStageTile(int ObjectType)
                     if(stage_block[i][j] == ObjectType)
                     {
                         if(j != MAX_HORIZONTAL_BLOCK-1)
-                            std::swap(stage_block[i][j],stage_block[i][j+1]);
+                        {
+                            if(stage_block[i][j+1] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i][j+1]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i][j+block_check] != AIR && j+block_check < MAX_HORIZONTAL_BLOCK)
+                                {
+                                    switch(stage_block[i][j+block_check])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i][j+block_check] >=HORIZONTAL_WALL && stage_block[i][j+block_check] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(j+block_check < MAX_HORIZONTAL_BLOCK)
+                                {
+                                    int current_air = j+block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i][j+block_check])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push || rock_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push || flag_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push || skull_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push || water_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i][j+block_check] >= HORIZONTAL_WALL && stage_block[i][j+block_check] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i][j+block_check] >= IS_TEXT && stage_block[i][j+block_check] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                            current_air = j+block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -909,8 +1079,113 @@ void Stage::MoveStageTile(int ObjectType)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
                     {
-                        if(j != 0)
-                            std::swap(stage_block[i][j],stage_block[i][j-1]);
+                        if(j != 0 && (stage_block[i][j-1] < HORIZONTAL_WALL || stage_block[i][j-1] > WALL_BLOCK))
+                        {
+                            if(stage_block[i][j-1] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i][j-1]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i][j-block_check] != AIR && j-block_check < MAX_HORIZONTAL_BLOCK)
+                                {
+                                    switch(stage_block[i][j-block_check])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i][j-block_check] >=HORIZONTAL_WALL && stage_block[i][j-block_check] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(j-block_check >= 0)
+                                {
+                                    int current_air = j-block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i][j-block_check])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i][j-block_check] >= HORIZONTAL_WALL && stage_block[i][j-block_check] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push || wall_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i][j-block_check] >= IS_TEXT && stage_block[i][j-block_check] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                            current_air = j-block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 else
@@ -918,7 +1193,112 @@ void Stage::MoveStageTile(int ObjectType)
                     if(stage_block[i][j] == ObjectType)
                     {
                         if(j != 0)
-                            std::swap(stage_block[i][j],stage_block[i][j-1]);
+                        {
+                            if(stage_block[i][j-1] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i][j-1]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i][j-block_check] != AIR && j-block_check >= 0)
+                                {
+                                    switch(stage_block[i][j-block_check])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i][j-block_check] >=HORIZONTAL_WALL && stage_block[i][j-block_check] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(j-block_check >= 0)
+                                {
+                                    int current_air = j-block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i][j-block_check])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push || rock_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push || flag_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push || skull_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push || water_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i][j-block_check] >= HORIZONTAL_WALL && stage_block[i][j-block_check] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i][j-block_check] >= IS_TEXT && stage_block[i][j-block_check] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                            current_air = j-block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -933,8 +1313,113 @@ void Stage::MoveStageTile(int ObjectType)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
                     {
-                        if(i != 0)
-                            std::swap(stage_block[i][j],stage_block[i-1][j]);
+                        if(i != 0 && (stage_block[i-1][j] < HORIZONTAL_WALL || stage_block[i-1][j] > WALL_BLOCK))
+                        {
+                            if(stage_block[i-1][j] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i-1][j]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i-block_check][j] != AIR && i-block_check >= 0)
+                                {
+                                    switch(stage_block[i-block_check][j])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i-block_check][j] >=HORIZONTAL_WALL && stage_block[i-block_check][j] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(i-block_check >= 0)
+                                {
+                                    int current_air = i-block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i-block_check][j])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i-block_check][j] >= HORIZONTAL_WALL && stage_block[i-block_check][j] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push || wall_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i-block_check][j] >= IS_TEXT && stage_block[i-block_check][j] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                            current_air = i-block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 else
@@ -942,7 +1427,112 @@ void Stage::MoveStageTile(int ObjectType)
                     if(stage_block[i][j] == ObjectType)
                     {
                         if(i != 0)
-                            std::swap(stage_block[i][j],stage_block[i-1][j]);
+                        {
+                            if(stage_block[i-1][j] == AIR)
+                            {
+                                std::swap(stage_block[i-1][j],stage_block[i][j]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i-block_check][j] != AIR && i-block_check >= 0)
+                                {
+                                    switch(stage_block[i-block_check][j])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i-block_check][j] >=HORIZONTAL_WALL && stage_block[i-block_check][j] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(i-block_check >= 0)
+                                {
+                                    int current_air = i-block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i-block_check][j])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push || rock_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push || flag_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push || skull_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push || water_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i-block_check][j] >= HORIZONTAL_WALL && stage_block[i-block_check][j] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i-block_check][j] >= IS_TEXT && stage_block[i-block_check][j] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -958,16 +1548,226 @@ void Stage::MoveStageTile(int ObjectType)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
                     {
-                        if(i != MAX_VERTICAL_BLOCK-1)
-                            std::swap(stage_block[i][j],stage_block[i+1][j]);
+                        if(i < MAX_VERTICAL_BLOCK-1 && (stage_block[i+1][j] < HORIZONTAL_WALL || stage_block[i+1][j] > WALL_BLOCK))
+                        {
+                            if(stage_block[i+1][j] == AIR)
+                            {
+                                std::swap(stage_block[i][j],stage_block[i+1][j]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i+block_check][j] != AIR && i+block_check < MAX_VERTICAL_BLOCK)
+                                {
+                                    switch(stage_block[i+block_check][j])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i+block_check][j] >=HORIZONTAL_WALL && stage_block[i+block_check][j] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(i+block_check < MAX_VERTICAL_BLOCK)
+                                {
+                                    int current_air = i+block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i+block_check][j])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push)
+                                            {
+                                               std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i+block_check][j] >= HORIZONTAL_WALL && stage_block[i+block_check][j] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push || wall_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i+block_check][j] >= IS_TEXT && stage_block[i+block_check][j] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                            current_air = i+block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 else
                 {
                     if(stage_block[i][j] == ObjectType)
                     {
-                        if(i != MAX_VERTICAL_BLOCK-1)
-                            std::swap(stage_block[i][j],stage_block[i+1][j]);
+                        if(i < MAX_VERTICAL_BLOCK-1)
+                        {
+                            if(stage_block[i+1][j] == AIR)
+                            {
+                                std::swap(stage_block[i+1][j],stage_block[i][j]);
+                            }
+                            else
+                            {
+                                int block_check = 1;
+                                while(stage_block[i+block_check][j] != AIR && i+block_check < MAX_VERTICAL_BLOCK)
+                                {
+                                    switch(stage_block[i+block_check][j])
+                                    {
+                                    case ROCK:
+                                        if(rock_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case FLAG:
+                                        if(flag_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+
+                                        break;
+                                    case SKULL:
+                                        if(skull_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    case WATER:
+                                        if(water_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    if(stage_block[i+block_check][j] >=HORIZONTAL_WALL && stage_block[i+block_check][j] <= WALL_BLOCK)
+                                    {
+                                        if(wall_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                    }
+                                    block_check++;
+                                }
+                                if(i+block_check < MAX_VERTICAL_BLOCK)
+                                {
+                                    int current_air = i+block_check;
+                                    block_check--;
+                                    while(block_check > -1)
+                                    {
+                                        switch(stage_block[i+block_check][j])
+                                        {
+                                        case ROCK:
+                                            if(rock_is_push || rock_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case FLAG:
+                                            if(flag_is_push || flag_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case SKULL:
+                                            if(skull_is_push || skull_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        case WATER:
+                                            if(water_is_push || water_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                        if(stage_block[i+block_check][j] >= HORIZONTAL_WALL && stage_block[i+block_check][j] <= WALL_BLOCK)
+                                        {
+                                            if(wall_is_push)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                        }
+                                        else if(stage_block[i+block_check][j] >= IS_TEXT && stage_block[i+block_check][j] <= SKULL_TEXT)
+                                        {
+                                            std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                            current_air = i+block_check;
+                                        }
+                                        block_check--;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1005,7 +1805,7 @@ void Stage::ChangeBlock(int ObjectType_src,int ObjectType_dst)
 
 void Stage::RestartRule()
 {
-    // rule for baba
+// rule for baba
     baba_is_you = false;
     baba_is_win = false;
     baba_is_stop = false;
@@ -1013,6 +1813,10 @@ void Stage::RestartRule()
     baba_is_flag = false;
     baba_is_wall = false;
     baba_is_rock = false;
+    baba_is_sink = false;
+    baba_is_kill = false;
+    baba_is_water = false;
+    baba_is_skull = false;
 // rule for flag
     flag_is_you = false;
     flag_is_win = false;
@@ -1021,6 +1825,10 @@ void Stage::RestartRule()
     flag_is_baba = false;
     flag_is_wall = false;
     flag_is_rock = false;
+    flag_is_sink = false;
+    flag_is_kill = false;
+    flag_is_water = false;
+    flag_is_skull = false;
 // rule for wall
     wall_is_you = false;
     wall_is_win = false;
@@ -1029,6 +1837,10 @@ void Stage::RestartRule()
     wall_is_flag = false;
     wall_is_baba = false;
     wall_is_rock = false;
+    wall_is_sink = false;
+    wall_is_kill = false;
+    wall_is_water = false;
+    wall_is_skull = false;
 // rule for rock
     rock_is_you = false;
     rock_is_win = false;
@@ -1037,4 +1849,32 @@ void Stage::RestartRule()
     rock_is_flag = false;
     rock_is_wall = false;
     rock_is_baba = false;
+    rock_is_sink = false;
+    rock_is_kill = false;
+    rock_is_water = false;
+    rock_is_skull = false;
+// rule for water
+    water_is_you = false;
+    water_is_win = false;
+    water_is_stop = false;
+    water_is_push = false;
+    water_is_flag = false;
+    water_is_wall = false;
+    water_is_baba = false;
+    water_is_sink = false;
+    water_is_kill = false;
+    water_is_water = false;
+    water_is_skull = false;
+// rule for skull
+    skull_is_you = false;
+    skull_is_win = false;
+    skull_is_stop = false;
+    skull_is_push = false;
+    skull_is_flag = false;
+    skull_is_wall = false;
+    skull_is_baba = false;
+    skull_is_sink = false;
+    skull_is_kill = false;
+    skull_is_water = false;
+    skull_is_skull = false;
 }

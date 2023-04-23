@@ -5,7 +5,7 @@
 1679885002 c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.h
 	"CommonFunc.h"
 
-1681739085 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
+1682124570 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -41,10 +41,10 @@
 1679812099 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.cpp
 	"menu.h"
 
-1681740703 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
+1682242061 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
 	"stage.h"
 
-1681717472 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
+1682063800 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
 	"CommonFunc.h"
 	"Texture.h"
 	"Object.h"
@@ -57,15 +57,14 @@
 	"stage.h"
 	"Object.h"
 
-1681740150 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.cpp
+1682124725 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.cpp
 	"game.h"
 
-1681651848 c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.h
+1682062743 c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.h
 	"Texture.h"
 	"CommonFunc.h"
 	"Object.h"
 	"stage.h"
-	"Timer.h"
 
 1681436147 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.cpp
 	"Timer.h"

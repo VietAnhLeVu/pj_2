@@ -37,8 +37,6 @@
 		<Unit filename="Object.h" />
 		<Unit filename="Texture.cpp" />
 		<Unit filename="Texture.h" />
-		<Unit filename="Timer.cpp" />
-		<Unit filename="Timer.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
 		<Unit filename="main.cpp" />

@@ -17,8 +17,8 @@
 #define MAX_HORIZONTAL_BLOCK 20
 #define MAX_VERTICAL_BLOCK 11
 #define MAX_BLOCK_TYPE 30
-#define DEFAULT_X 384
-#define DEFAULT_Y 448
+#define DEFAULT_X 0
+#define DEFAULT_Y 0
 #define DEFAULT_H 64
 #define DEFAULT_W 64
 
@@ -44,7 +44,13 @@ enum ObjectType
     ROCK_TEXT,
     STOP_TEXT,
     WALL_TEXT,
-
+    SINK_TEXT,
+    KILL_TEXT,
+    WATER_TEXT,
+    SKULL_TEXT,
+    SKULL,
+    WATER,
+    BABA = 33,
 };
 
 namespace SDL_CommonFunc

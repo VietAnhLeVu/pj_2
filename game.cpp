@@ -102,7 +102,7 @@ void Game::running()
 
     // init stage
     Stage lvl_1;
-    lvl_1.LoadStage("resource/map_2.dat");
+    lvl_1.LoadStage("resource/map_4.dat");
     lvl_1.LoadTiles(gRenderer);
     Object baba;
 
@@ -425,7 +425,7 @@ void Game::running()
             if(!lvl_1.baba_is_you)
                 lvl_1.HandleEvent(e);
             if(!lvl_1.baba_is_stop && lvl_1.baba_is_you)
-            {
+            {   std::cout << 1;
                 baba.HandleEvent(e);
                 // Restrict moving one block per time
                 if(baba.Get_Pressed() == 1)
@@ -589,6 +589,10 @@ void Game::running()
         lvl_1.CheckStagePush(baba,WIN_TEXT);
         lvl_1.CheckStagePush(baba,STOP_TEXT);
         lvl_1.CheckStagePush(baba,PUSH_TEXT);
+        lvl_1.CheckStagePush(baba,SINK_TEXT);
+        lvl_1.CheckStagePush(baba,KILL_TEXT);
+        lvl_1.CheckStagePush(baba,WATER_TEXT);
+        lvl_1.CheckStagePush(baba,SKULL_TEXT);
 
         //Clear screen
         SDL_SetRenderDrawColor( gRenderer, 75, 92, 28, 0xFF );

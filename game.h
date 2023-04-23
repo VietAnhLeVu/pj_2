@@ -5,7 +5,7 @@
 #include "CommonFunc.h"
 #include "Object.h"
 #include "stage.h"
-#include "Timer.h"
+
 
 class Game
 {
