@@ -83,7 +83,7 @@ public:
     bool water_is_baba = false;
     bool water_is_sink = false;
     bool water_is_kill = false;
-    bool water_is_water = false;
+    bool water_is_rock = false;
     bool water_is_skull = false;
 // rule for skull
     bool skull_is_you = false;
@@ -96,7 +96,7 @@ public:
     bool skull_is_sink = false;
     bool skull_is_kill = false;
     bool skull_is_water = false;
-    bool skull_is_skull = false;
+    bool skull_is_rock = false;
 
     void LoadStage(std::string file_path);
 
@@ -107,13 +107,20 @@ public:
     void CheckStageCollision(Object& player,int ObjectType);
     void CheckStagePush(Object& player,int ObjectType);
 
-    void Copy_Stage_Block(int facsimile[][MAX_HORIZONTAL_BLOCK]);
-
     void HandleEvent(SDL_Event& e);
     void MoveStageTile(int ObjectType);
     void RestartRule();
+    void CheckRule();
     bool CheckWin(Object& player,int ObjectType);
     void ChangeBlock(int ObjectType_src,int ObjectType_dst);
+    void ManipulateActionType(int src_action_type)
+    {
+        action_type = src_action_type;
+    }
+    void ChangePlayerTile(int y,int x,int type)
+    {
+        stage_block[x][y] = type;
+    }
 private:
     int action_type = -1;
     Tile_type block[MAX_BLOCK_TYPE];

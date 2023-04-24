@@ -105,6 +105,8 @@ void Game::running()
     lvl_1.LoadStage("resource/map_4.dat");
     lvl_1.LoadTiles(gRenderer);
     Object baba;
+    baba.MakeSpriteClip(12);
+
 
 
     //While application is running
@@ -115,281 +117,8 @@ void Game::running()
         //frameStart = fpsTimer.getTicks();
 
 
-        // RULE CHECK (IF I WANT TO CHECK THE RULES I NEED TO KNOW EVERY OBJECT THAT THE MAP HAS)
-
-        int facsimile[MAX_VERTICAL_BLOCK][MAX_HORIZONTAL_BLOCK];
-        lvl_1.Copy_Stage_Block(facsimile);
-
-        // CHECK STAGE 2D ARRAY
-        for(int i = 0; i<MAX_VERTICAL_BLOCK; i++)
-        {
-            for(int j = 0; j<MAX_HORIZONTAL_BLOCK; j++)
-            {
-                // Check the rule for each object
-                if(facsimile[i][j] == BABA_TEXT)
-                {
-                    if(facsimile[i+1][j] == IS_TEXT || facsimile[i][j+1] == IS_TEXT)
-                    {
-                        if(facsimile[i][j+1] == IS_TEXT)
-                        {
-                            switch(facsimile[i][j+2])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.baba_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.baba_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.baba_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.baba_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.baba_is_flag = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.baba_is_wall = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.baba_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                        if(facsimile[i+1][j] == IS_TEXT)
-                        {
-
-                            switch(facsimile[i+2][j])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.baba_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.baba_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.baba_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.baba_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.baba_is_flag = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.baba_is_wall = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.baba_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                    }
-                }
-                else if(facsimile[i][j] == FLAG_TEXT)
-                {
-                    if(facsimile[i+1][j] == IS_TEXT || facsimile[i][j+1] == IS_TEXT)
-                    {
-                        if(facsimile[i][j+1] == IS_TEXT)
-                        {
-                            switch(facsimile[i][j+2])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.flag_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.flag_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.flag_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.flag_is_push = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.flag_is_baba = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.flag_is_wall = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.flag_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                        if(facsimile[i+1][j] == IS_TEXT)
-                        {
-
-                            switch(facsimile[i+2][j])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.flag_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.flag_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.flag_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.flag_is_push = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.flag_is_baba = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.flag_is_wall = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.flag_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                    }
-                }
-                else if(facsimile[i][j] == WALL_TEXT)
-                {
-                    if(facsimile[i+1][j] == IS_TEXT || facsimile[i][j+1] == IS_TEXT)
-                    {
-                        if(facsimile[i][j+1] == IS_TEXT)
-                        {
-                            switch(facsimile[i][j+2])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.wall_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.wall_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.wall_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.wall_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.wall_is_flag = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.wall_is_baba = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.wall_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                        if(facsimile[i+1][j] == IS_TEXT)
-                        {
-
-                            switch(facsimile[i+2][j])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.wall_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.wall_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.wall_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.wall_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.wall_is_flag = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.wall_is_baba = true;
-                                break;
-                            case ROCK_TEXT:
-                                lvl_1.wall_is_rock = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                    }
-                }
-                else if(facsimile[i][j] == ROCK_TEXT)
-                {
-                    if(facsimile[i+1][j] == IS_TEXT || facsimile[i][j+1] == IS_TEXT)
-                    {
-                        if(facsimile[i][j+1] == IS_TEXT)
-                        {
-                            switch(facsimile[i][j+2])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.rock_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.rock_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.rock_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.rock_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.rock_is_flag = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.rock_is_wall = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.rock_is_baba = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                        if(facsimile[i+1][j] == IS_TEXT)
-                        {
-
-                            switch(facsimile[i+2][j])
-                            {
-                            case STOP_TEXT:
-                                lvl_1.rock_is_stop =true;
-                                break;
-                            case WIN_TEXT:
-                                lvl_1.rock_is_win = true;
-                                break;
-                            case YOU_TEXT:
-                                lvl_1.rock_is_you = true;
-                                break;
-                            case PUSH_TEXT:
-                                lvl_1.rock_is_push = true;
-                                break;
-                            case FLAG_TEXT:
-                                lvl_1.rock_is_flag = true;
-                                break;
-                            case WALL_TEXT:
-                                lvl_1.rock_is_wall = true;
-                                break;
-                            case BABA_TEXT:
-                                lvl_1.rock_is_baba = true;
-                                break;
-                            default:
-                                break;
-                            };
-                        }
-                    }
-                }
-                // Done for a block
-            }
-
-        }
+        // RULE CHECK
+        lvl_1.CheckRule();
 
         //Handle events on queue
         while( SDL_PollEvent( &e ) != 0 )
@@ -409,13 +138,13 @@ void Game::running()
                 case SDLK_m:
                     if(music_on)
                     {
-                    Mix_PauseMusic();
-                    music_on =false;
+                        Mix_PauseMusic();
+                        music_on =false;
                     }
                     else
                     {
-                    Mix_ResumeMusic();
-                    music_on = true;
+                        Mix_ResumeMusic();
+                        music_on = true;
                     }
                     break;
                 }
@@ -423,13 +152,38 @@ void Game::running()
 
 
             if(!lvl_1.baba_is_you)
+            {
                 lvl_1.HandleEvent(e);
-            if(!lvl_1.baba_is_stop && lvl_1.baba_is_you)
-            {   std::cout << 1;
+            }
+            if(lvl_1.baba_is_you &&
+                    !lvl_1.baba_is_flag &&
+                    !lvl_1.baba_is_rock &&
+                    !lvl_1.baba_is_skull &&
+                    !lvl_1.baba_is_wall &&
+                    !lvl_1.baba_is_water&&
+                    !lvl_1.rock_is_you &&
+                    !lvl_1.flag_is_you &&
+                    !lvl_1.wall_is_you &&
+                    !lvl_1.water_is_you &&
+                    !lvl_1.skull_is_you)
+            {
+                if(baba.Get_Out_Of_Map())
+                {
+                    baba.SetX(DEFAULT_X);
+                    baba.SetY(DEFAULT_Y);
+                    baba.Change_Out_Of_Map_Ch(false);
+                }
                 baba.HandleEvent(e);
+                lvl_1.ManipulateActionType(baba.GetActionType());
                 // Restrict moving one block per time
-                if(baba.Get_Pressed() == 1)
-                baba.MoveObject();
+                if(baba.Get_Pressed() == 1 && !lvl_1.baba_is_stop)
+                {
+                    baba.MoveObject();
+                    lvl_1.MoveStageTile(BABA_TILE);
+                }
+
+
+
 
                 // Manipulate baba frame
                 if(baba.GetActionType() != -1)
@@ -439,38 +193,183 @@ void Game::running()
                     baba.ReloadFrame();
                 }
                 // Load baba
-                if(lvl_1.baba_is_you && !lvl_1.baba_is_flag && !lvl_1.baba_is_rock && !lvl_1.baba_is_wall)
+                if(lvl_1.baba_is_you)
                 {
                     switch(baba.GetStatus())
                     {
                     case baba.MOVELEFT:
-                        baba.loadFromFile(gRenderer,"resource/baba_left.png",12);
+                        baba.loadFromFile(gRenderer,"resource/baba2_left.png");
                         break;
                     case baba.MOVERIGHT:
-                        baba.loadFromFile(gRenderer,"resource/baba_right.png",12);
+                        baba.loadFromFile(gRenderer,"resource/baba2_right.png");
                         break;
                     case baba.MOVEDOWN:
-                        baba.loadFromFile(gRenderer,"resource/baba_down.png",12);
+                        baba.loadFromFile(gRenderer,"resource/baba2_down.png");
                         break;
                     case baba.MOVEUP:
-                        baba.loadFromFile(gRenderer,"resource/baba_up.png",12);
+                        baba.loadFromFile(gRenderer,"resource/baba2_up.png");
                         break;
                     default:
-                        baba.loadFromFile(gRenderer,"resource/baba_right.png",12);
+                        baba.loadFromFile(gRenderer,"resource/baba2_right.png");
                         break;
                     };
                 }
+
             }
-            else if(lvl_1.rock_is_you)
+
+            else if(lvl_1.rock_is_you && !lvl_1.rock_is_stop)
             {
                 lvl_1.MoveStageTile(ROCK);
-            }else if(lvl_1.flag_is_you)
+                if(!baba.Get_Out_Of_Map())
+                {
+                    lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,BABA_TILE);
+                    baba.SetX(-128);
+                    baba.SetY(-128);
+                    baba.Change_Out_Of_Map_Ch(true);
+                }
+
+
+            }
+            else if(lvl_1.flag_is_you && !lvl_1.flag_is_stop)
             {
                 lvl_1.MoveStageTile(FLAG);
-            }else if(lvl_1.wall_is_you)
+                if(!baba.Get_Out_Of_Map())
+                {
+                    lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,BABA_TILE);
+                    baba.SetX(-128);
+                    baba.SetY(-128);
+                    baba.Change_Out_Of_Map_Ch(true);
+                }
+            }
+            else if(lvl_1.wall_is_you && !lvl_1.wall_is_stop)
             {
                 lvl_1.MoveStageTile(WALL_BLOCK);
+                if(!baba.Get_Out_Of_Map())
+                {
+                    lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,BABA_TILE);
+                    baba.SetX(-128);
+                    baba.SetY(-128);
+                    baba.Change_Out_Of_Map_Ch(true);
+                }
             }
+            else if(lvl_1.water_is_you && !lvl_1.water_is_stop)
+            {
+                lvl_1.MoveStageTile(WATER);
+                if(!baba.Get_Out_Of_Map())
+                {
+                    lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,BABA_TILE);
+                    baba.SetX(-128);
+                    baba.SetY(-128);
+                    baba.Change_Out_Of_Map_Ch(true);
+                }
+            }
+            else if(lvl_1.skull_is_you && !lvl_1.skull_is_stop)
+            {
+                lvl_1.MoveStageTile(SKULL);
+                if(!baba.Get_Out_Of_Map())
+                {
+                    lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,BABA_TILE);
+                    baba.SetX(-128);
+                    baba.SetY(-128);
+                    baba.Change_Out_Of_Map_Ch(true);
+                }
+            }
+
+            // Combination of rule
+            if(lvl_1.baba_is_flag)
+            {
+                if(lvl_1.baba_is_you)
+                {
+                    if(!baba.Get_Out_Of_Map())
+                    {
+                        lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,FLAG);
+                        baba.SetX(-128);
+                        baba.SetY(-128);
+                        baba.Change_Out_Of_Map_Ch(true);
+                    }
+                    lvl_1.HandleEvent(e);
+                    lvl_1.MoveStageTile(FLAG);
+                }
+                else
+                {
+                    lvl_1.ChangeBlock(BABA_TILE,FLAG);
+                }
+            }
+            else if(lvl_1.baba_is_wall)
+            {
+                if(lvl_1.baba_is_you)
+                {
+                    if(!baba.Get_Out_Of_Map())
+                    {
+                        lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,WALL_BLOCK);
+                        baba.SetX(-128);
+                        baba.SetY(-128);
+                        baba.Change_Out_Of_Map_Ch(true);
+                    }
+                    lvl_1.HandleEvent(e);
+                    lvl_1.MoveStageTile(WALL_BLOCK);
+                }
+                else
+                {
+                    lvl_1.ChangeBlock(BABA_TILE,WALL_BLOCK);
+                }
+            }
+            else if(lvl_1.baba_is_rock)
+            {
+                if(lvl_1.baba_is_you)
+                {
+                    if(!baba.Get_Out_Of_Map())
+                    {
+                        lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,ROCK);
+                        baba.SetX(-128);
+                        baba.SetY(-128);
+                        baba.Change_Out_Of_Map_Ch(true);
+                    }
+                    lvl_1.HandleEvent(e);
+                    lvl_1.MoveStageTile(ROCK);
+                }
+                else
+                {
+                    lvl_1.ChangeBlock(BABA_TILE,ROCK);
+                }
+            }else if(lvl_1.baba_is_water)
+            {
+                if(lvl_1.baba_is_you)
+                {
+                    if(!baba.Get_Out_Of_Map())
+                    {
+                        lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,WATER);
+                        baba.SetX(-128);
+                        baba.SetY(-128);
+                        baba.Change_Out_Of_Map_Ch(true);
+                    }
+                    lvl_1.HandleEvent(e);
+                    lvl_1.MoveStageTile(WATER);
+                }
+                else
+                {
+                    lvl_1.ChangeBlock(BABA_TILE,WATER);
+                }
+            }else if(lvl_1.baba_is_skull)
+            {
+                if(lvl_1.baba_is_you)
+                {
+                    if(!baba.Get_Out_Of_Map())
+                    {
+                        lvl_1.ChangePlayerTile((baba.GetX() +1)/64,(baba.GetY()+1)/64,SKULL);
+                        baba.SetX(-128);
+                        baba.SetY(-128);
+                        baba.Change_Out_Of_Map_Ch(true);
+                    }
+                    lvl_1.HandleEvent(e);
+                    lvl_1.MoveStageTile(SKULL);
+                }
+                else
+                {
+                    lvl_1.ChangeBlock(BABA_TILE,SKULL);
+                }
+            }
+
         }
 
 
@@ -479,19 +378,12 @@ void Game::running()
         {
             quit = true;
         }
-        if(lvl_1.baba_is_flag)
+        if(lvl_1.baba_is_push)
         {
-            baba.LTexture::loadFromFile(gRenderer,"resource/8.png");
+            lvl_1.CheckStagePush(baba,BABA_TILE);
         }
-        else if(lvl_1.baba_is_wall)
-        {
-            baba.LTexture::loadFromFile(gRenderer,"resource/7.png");
 
-        }
-        else if(lvl_1.baba_is_rock)
-        {
-            baba.LTexture::loadFromFile(gRenderer,"resource/9.png");
-        }
+
 
 // Manipulate rule for flag
         if(lvl_1.flag_is_win)
@@ -499,11 +391,11 @@ void Game::running()
             if(lvl_1.CheckWin(baba,FLAG))
                 quit = true;
         }
-        if(lvl_1.flag_is_stop)
+        if(lvl_1.flag_is_stop && lvl_1.baba_is_you)
         {
             lvl_1.CheckStageCollision(baba,FLAG);
         }
-        else if(lvl_1.flag_is_push)
+        else if(lvl_1.flag_is_push && lvl_1.baba_is_you)
         {
             lvl_1.CheckStagePush(baba,FLAG);
         }
@@ -518,37 +410,58 @@ void Game::running()
         }
         else if(lvl_1.flag_is_baba)
         {
-            lvl_1.ChangeBlock(FLAG,YOU_TEXT);
+            lvl_1.ChangeBlock(FLAG,BABA_TILE);
         }
+        else if(lvl_1.flag_is_water)
+        {
+            lvl_1.ChangeBlock(FLAG,WATER);
+        }
+        else if(lvl_1.flag_is_skull)
+        {
+            lvl_1.ChangeBlock(FLAG,SKULL);
+        }
+
         // Manipulate the rule for the wall
         if(lvl_1.wall_is_win)
         {
-            for(int wall_object = HORIZONTAL_WALL;wall_object<=WALL_BLOCK;wall_object++)
+            for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
                 if(lvl_1.CheckWin(baba,wall_object))
                     quit = true;
         }
-        if(lvl_1.wall_is_stop)
-        {   for(int wall_object = HORIZONTAL_WALL;wall_object<=WALL_BLOCK;wall_object++)
-            lvl_1.CheckStageCollision(baba,wall_object);
-        }
-        else if(lvl_1.wall_is_push)
+        if(lvl_1.wall_is_stop && lvl_1.baba_is_you)
         {
-            for(int wall_object = HORIZONTAL_WALL;wall_object<=WALL_BLOCK;wall_object++)
-            lvl_1.CheckStagePush(baba,wall_object);
+            for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
+                lvl_1.CheckStageCollision(baba,wall_object);
+        }
+        else if(lvl_1.wall_is_push && lvl_1.baba_is_you)
+        {
+            for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
+                lvl_1.CheckStagePush(baba,wall_object);
         }
         if(lvl_1.wall_is_rock)
-        {   for(int i = HORIZONTAL_WALL;i<=WALL_BLOCK;i++)
-            lvl_1.ChangeBlock(i,ROCK);
-        }
-        if(lvl_1.wall_is_flag)
         {
-            for(int i = HORIZONTAL_WALL;i<=WALL_BLOCK;i++)
-            lvl_1.ChangeBlock(i,FLAG);
+            for(int i = HORIZONTAL_WALL; i<=WALL_BLOCK; i++)
+                lvl_1.ChangeBlock(i,ROCK);
         }
-        if(lvl_1.wall_is_baba)
+        else if(lvl_1.wall_is_flag)
         {
-            for(int i = HORIZONTAL_WALL;i<=WALL_BLOCK;i++)
-            lvl_1.ChangeBlock(i,YOU_TEXT);
+            for(int i = HORIZONTAL_WALL; i<=WALL_BLOCK; i++)
+                lvl_1.ChangeBlock(i,FLAG);
+        }
+        else if(lvl_1.wall_is_baba)
+        {
+            for(int i = HORIZONTAL_WALL; i<=WALL_BLOCK; i++)
+                lvl_1.ChangeBlock(i,BABA_TILE);
+        }
+        else if(lvl_1.wall_is_water)
+        {
+            for(int i = HORIZONTAL_WALL; i<=WALL_BLOCK; i++)
+                lvl_1.ChangeBlock(i,WATER);
+        }
+        else if(lvl_1.wall_is_skull)
+        {
+            for(int i = HORIZONTAL_WALL; i<=WALL_BLOCK; i++)
+                lvl_1.ChangeBlock(i,SKULL);
         }
 
         // Manipulate the rule for the rock
@@ -557,11 +470,11 @@ void Game::running()
             if(lvl_1.CheckWin(baba,ROCK))
                 quit = true;
         }
-        if(lvl_1.rock_is_stop)
+        if(lvl_1.rock_is_stop && lvl_1.baba_is_you)
         {
             lvl_1.CheckStageCollision(baba,ROCK);
         }
-        else if(lvl_1.rock_is_push)
+        else if(lvl_1.rock_is_push && lvl_1.baba_is_you)
         {
             lvl_1.CheckStagePush(baba,ROCK);
         }
@@ -569,30 +482,29 @@ void Game::running()
         {
             lvl_1.ChangeBlock(ROCK,FLAG);
         }
-        if(lvl_1.rock_is_wall)
+        else if(lvl_1.rock_is_wall)
         {
             lvl_1.ChangeBlock(ROCK,WALL_BLOCK);
         }
-        if(lvl_1.rock_is_baba)
+        else if(lvl_1.rock_is_baba)
         {
-            lvl_1.ChangeBlock(ROCK,YOU_TEXT);
+            lvl_1.ChangeBlock(ROCK,BABA_TILE);
+        }
+        else if(lvl_1.rock_is_water)
+        {
+            lvl_1.ChangeBlock(ROCK,WATER);
+        }
+        else if(lvl_1.rock_is_baba)
+        {
+            lvl_1.ChangeBlock(ROCK,SKULL);
         }
 
 
         // Move the text
-        lvl_1.CheckStagePush(baba,ROCK_TEXT);
-        lvl_1.CheckStagePush(baba,BABA_TEXT);
-        lvl_1.CheckStagePush(baba,IS_TEXT);
-        lvl_1.CheckStagePush(baba,YOU_TEXT);
-        lvl_1.CheckStagePush(baba,FLAG_TEXT);
-        lvl_1.CheckStagePush(baba,WALL_TEXT);
-        lvl_1.CheckStagePush(baba,WIN_TEXT);
-        lvl_1.CheckStagePush(baba,STOP_TEXT);
-        lvl_1.CheckStagePush(baba,PUSH_TEXT);
-        lvl_1.CheckStagePush(baba,SINK_TEXT);
-        lvl_1.CheckStagePush(baba,KILL_TEXT);
-        lvl_1.CheckStagePush(baba,WATER_TEXT);
-        lvl_1.CheckStagePush(baba,SKULL_TEXT);
+        for(int p = IS_TEXT;p<=SKULL_TEXT;p++)
+        {
+            lvl_1.CheckStagePush(baba,p);
+        }
 
         //Clear screen
         SDL_SetRenderDrawColor( gRenderer, 75, 92, 28, 0xFF );

@@ -13,7 +13,7 @@ class LTexture
 		~LTexture();
 
 		//Loads image at specified path
-		virtual bool loadFromFile(SDL_Renderer* gRenderer,std::string path);
+		bool loadFromFile(SDL_Renderer* gRenderer,std::string path);
 
 		//Deallocates texture
 		void free();

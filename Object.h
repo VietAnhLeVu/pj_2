@@ -19,7 +19,8 @@ public:
     };
 
 
-    bool loadFromFile(SDL_Renderer* gRenderer,std::string path,int clip);
+    //bool loadFromFile(SDL_Renderer* gRenderer,std::string path,int clip);
+    void MakeSpriteClip(int clip);
 
     int GetFrame()
     {
@@ -34,16 +35,24 @@ public:
         frame = 0;
     }
 
-    float GetX()
+    double GetX()
     {
         return pos.x;
     }
 
-    float GetY()
+    double GetY()
     {
         return pos.y;
     }
 
+    void SetX(float x)
+    {
+        pos.x = x;
+    }
+    void SetY(float y)
+    {
+        pos.y = y;
+    }
     int GetActionType()
     {
         return action_type;
@@ -74,6 +83,15 @@ virtual void HandleEvent(SDL_Event& e);
     {
         return pressed;
     }
+
+    bool Get_Out_Of_Map()
+    {
+        return Out_of_map;
+    }
+    void Change_Out_Of_Map_Ch(bool cmd)
+    {
+        Out_of_map = cmd;
+    }
 private:
     int pressed = 0;
     std::vector <SDL_Rect*> SpriteClips;
@@ -82,7 +100,7 @@ private:
     int status;
     SDL_Rect pos;
     int action_type = -1;
-
+    bool Out_of_map;
 };
 
 #endif // OBJECT_H_

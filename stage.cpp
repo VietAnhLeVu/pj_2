@@ -63,40 +63,6 @@ void Stage::DrawStage(SDL_Renderer* gRenderer)
 
 void Stage::CheckStageCollision(Object& player,int ObjectType)
 {
-    /*
-    int now_pos_y = (player.GetX())/64;
-    int now_pos_x = (player.GetY())/64;
-    int now_pos_x2 = (player.GetY()+63)/64;
-    int now_pos_y2 = (player.GetX() + 63)/64;
-    const SDL_Rect* s1 = &stage_block_rect[now_pos_x][now_pos_y];
-    const SDL_Rect s = player.GetPosRect();
-    const SDL_Rect* s2 = &s;
-    switch(player.GetStatus())
-    {
-    case Object::MOVELEFT:
-      if(stage_block[now_pos_x][now_pos_y])
-      if(!SDL_IntersectRect(s1,s2,NULL))
-        player.Manual_MoveObject(player.GetX()+64,player.GetY());
-    break;
-    case Object::MOVERIGHT:
-        if(stage_block[now_pos_x][now_pos_y])
-        if(!SDL_IntersectRect(s1,s2,NULL))
-        player.Manual_MoveObject(player.GetX()-64,player.GetY());
-    break;
-    case Object::MOVEUP:
-      if(stage_block[now_pos_x][now_pos_y])
-      if(!SDL_IntersectRect(s1,s2,NULL))
-        player.Manual_MoveObject(player.GetX(),player.GetY()+64);
-    break;
-    case Object::MOVEDOWN:
-      if(stage_block[now_pos_x][now_pos_y])
-      if(!SDL_IntersectRect(s1,s2,NULL))
-        player.Manual_MoveObject(player.GetX(),player.GetY()-64);
-    break;
-    default:
-    break;
-    };
-    */
     int now_pos_y = (player.GetX()+1)/64;
     int now_pos_x = (player.GetY()+1)/64;
     int now_pos_x2 = (player.GetY()+63)/64;
@@ -151,11 +117,11 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     {
                     case FLAG:
                         if(flag_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                         break;
                     case ROCK:
                         if(rock_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                         break;
                     default:
                         break;
@@ -163,7 +129,7 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     if(stage_block[now_pos_x][now_pos_y-block_check] >= HORIZONTAL_WALL && stage_block[now_pos_x][now_pos_y-block_check] <= WALL_BLOCK)
                     {
                         if(wall_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                     }
                     block_check++;
 
@@ -314,11 +280,11 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     {
                     case FLAG:
                         if(flag_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                         break;
                     case ROCK:
                         if(rock_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                         break;
                     default:
                         break;
@@ -326,7 +292,7 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     if(stage_block[now_pos_x][now_pos_y+block_check] >= HORIZONTAL_WALL && stage_block[now_pos_x][now_pos_y+block_check] <= WALL_BLOCK)
                     {
                         if(wall_is_stop)
-                            block_check = now_pos_y;
+                            block_check = MAX_HORIZONTAL_BLOCK;
                     }
                     block_check++;
 
@@ -473,11 +439,11 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     {
                     case FLAG:
                         if(flag_is_stop)
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                         break;
                     case ROCK:
                         if(rock_is_stop)
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                         break;
                     default:
                         break;
@@ -486,7 +452,7 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     {
                         if(wall_is_stop)
                         {
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                         }
                     }
                     block_check++;
@@ -633,11 +599,11 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     {
                     case FLAG:
                         if(flag_is_stop)
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                         break;
                     case ROCK:
                         if(rock_is_stop)
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                         break;
                     default:
                         break;
@@ -645,7 +611,7 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
                     if(stage_block[now_pos_x+block_check][now_pos_y] >= HORIZONTAL_WALL && stage_block[now_pos_x+block_check][now_pos_y] <= WALL_BLOCK)
                     {
                         if(wall_is_stop)
-                            block_check = now_pos_x;
+                            block_check = MAX_VERTICAL_BLOCK;
                     }
                     block_check++;
 
@@ -779,16 +745,6 @@ void Stage::CheckStagePush(Object& player,int ObjectType)
     };
 }
 
-void Stage::Copy_Stage_Block(int facsimile[][MAX_HORIZONTAL_BLOCK])
-{
-    for(int i = 0; i<MAX_VERTICAL_BLOCK; i++)
-    {
-        for(int j = 0; j<MAX_HORIZONTAL_BLOCK; j++)
-        {
-            facsimile[i][j] = stage_block[i][j];
-        }
-    }
-}
 
 void Stage::HandleEvent(SDL_Event& e)
 {
@@ -882,6 +838,12 @@ void Stage::MoveStageTile(int ObjectType)
                                             block_check = MAX_HORIZONTAL_BLOCK;
                                         }
                                         break;
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     default:
                                         break;
                                     }
@@ -925,6 +887,13 @@ void Stage::MoveStageTile(int ObjectType)
                                             break;
                                         case WATER:
                                             if(water_is_push)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case BABA_TILE:
+                                            if(baba_is_push)
                                             {
                                                 std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
                                                 current_air = j+block_check;
@@ -996,6 +965,12 @@ void Stage::MoveStageTile(int ObjectType)
                                             block_check = MAX_HORIZONTAL_BLOCK;
                                         }
                                         break;
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     default:
                                         break;
                                     }
@@ -1039,6 +1014,13 @@ void Stage::MoveStageTile(int ObjectType)
                                             break;
                                         case WATER:
                                             if(water_is_push || water_is_you)
+                                            {
+                                                std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
+                                                current_air = j+block_check;
+                                            }
+                                            break;
+                                        case BABA_TILE:
+                                            if(baba_is_push || baba_is_you)
                                             {
                                                 std::swap(stage_block[i][j+block_check],stage_block[i][current_air]);
                                                 current_air = j+block_check;
@@ -1092,6 +1074,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i][j-block_check])
                                     {
+                                    case  BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1137,6 +1125,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i][j-block_check])
                                         {
+                                        case BABA_TILE:
+                                        if(baba_is_push)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push)
                                             {
@@ -1205,6 +1200,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i][j-block_check])
                                     {
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1250,6 +1251,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i][j-block_check])
                                         {
+                                        case BABA_TILE:
+                                            if(baba_is_push || baba_is_you)
+                                            {
+                                                std::swap(stage_block[i][j-block_check],stage_block[i][current_air]);
+                                                current_air = j-block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push || rock_is_you)
                                             {
@@ -1326,6 +1334,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i-block_check][j])
                                     {
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1371,6 +1385,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i-block_check][j])
                                         {
+                                        case BABA_TILE:
+                                            if(baba_is_push)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push)
                                             {
@@ -1439,6 +1460,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i-block_check][j])
                                     {
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1484,6 +1511,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i-block_check][j])
                                         {
+                                        case BABA_TILE:
+                                            if(baba_is_push || baba_is_you)
+                                            {
+                                                std::swap(stage_block[i-block_check][j],stage_block[current_air][j]);
+                                                current_air = i-block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push || rock_is_you)
                                             {
@@ -1561,6 +1595,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i+block_check][j])
                                     {
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1606,6 +1646,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i+block_check][j])
                                         {
+                                        case BABA_TILE:
+                                            if(baba_is_push)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push)
                                             {
@@ -1674,6 +1721,12 @@ void Stage::MoveStageTile(int ObjectType)
                                 {
                                     switch(stage_block[i+block_check][j])
                                     {
+                                    case BABA_TILE:
+                                        if(baba_is_stop)
+                                        {
+                                            block_check = MAX_HORIZONTAL_BLOCK;
+                                        }
+                                        break;
                                     case ROCK:
                                         if(rock_is_stop)
                                         {
@@ -1719,6 +1772,13 @@ void Stage::MoveStageTile(int ObjectType)
                                     {
                                         switch(stage_block[i+block_check][j])
                                         {
+                                        case BABA_TILE:
+                                            if(baba_is_push || baba_is_you)
+                                            {
+                                                std::swap(stage_block[i+block_check][j],stage_block[current_air][j]);
+                                                current_air = i+block_check;
+                                            }
+                                            break;
                                         case ROCK:
                                             if(rock_is_push || rock_is_you)
                                             {
@@ -1856,6 +1916,7 @@ void Stage::RestartRule()
 // rule for water
     water_is_you = false;
     water_is_win = false;
+    water_is_rock = false;
     water_is_stop = false;
     water_is_push = false;
     water_is_flag = false;
@@ -1863,12 +1924,12 @@ void Stage::RestartRule()
     water_is_baba = false;
     water_is_sink = false;
     water_is_kill = false;
-    water_is_water = false;
     water_is_skull = false;
 // rule for skull
     skull_is_you = false;
     skull_is_win = false;
     skull_is_stop = false;
+    skull_is_rock = false;
     skull_is_push = false;
     skull_is_flag = false;
     skull_is_wall = false;
@@ -1876,5 +1937,550 @@ void Stage::RestartRule()
     skull_is_sink = false;
     skull_is_kill = false;
     skull_is_water = false;
-    skull_is_skull = false;
+}
+
+
+void Stage::CheckRule()
+{
+    for(int i = 0; i<MAX_VERTICAL_BLOCK; i++)
+        {
+            for(int j = 0; j<MAX_HORIZONTAL_BLOCK; j++)
+            {
+                // Check the rule for each object
+                if(stage_block[i][j] == BABA_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                baba_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                baba_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                baba_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                baba_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                baba_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                baba_is_wall = true;
+                                break;
+                            case ROCK_TEXT:
+                                baba_is_rock = true;
+                                break;
+                            case KILL_TEXT:
+                                baba_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                baba_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                baba_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                baba_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                baba_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                baba_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                baba_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                baba_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                baba_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                baba_is_wall = true;
+                                break;
+                            case ROCK_TEXT:
+                                baba_is_rock = true;
+                                break;
+                            case KILL_TEXT:
+                                baba_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                baba_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                baba_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                baba_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }
+                else if(stage_block[i][j] == FLAG_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                flag_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                flag_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                flag_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                flag_is_push = true;
+                                break;
+                            case BABA_TEXT:
+                                flag_is_baba = true;
+                                break;
+                            case WALL_TEXT:
+                                flag_is_wall = true;
+                                break;
+                            case ROCK_TEXT:
+                                flag_is_rock = true;
+                                break;
+                            case SINK_TEXT:
+                                flag_is_sink = true;
+                                break;
+                            case KILL_TEXT:
+                                flag_is_kill = true;
+                                break;
+                            case SKULL_TEXT:
+                                flag_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                flag_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                flag_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                flag_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                flag_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                flag_is_push = true;
+                                break;
+                            case BABA_TEXT:
+                                flag_is_baba = true;
+                                break;
+                            case WALL_TEXT:
+                                flag_is_wall = true;
+                                break;
+                            case ROCK_TEXT:
+                                flag_is_rock = true;
+                                break;
+                            case KILL_TEXT:
+                                flag_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                flag_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                flag_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                flag_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }
+                else if(stage_block[i][j] == WALL_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                wall_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                wall_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                wall_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                wall_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                wall_is_flag = true;
+                                break;
+                            case BABA_TEXT:
+                                wall_is_baba = true;
+                                break;
+                            case ROCK_TEXT:
+                                wall_is_rock = true;
+                                break;
+                            case KILL_TEXT:
+                                wall_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                wall_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                wall_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                wall_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                wall_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                wall_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                wall_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                wall_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                wall_is_flag = true;
+                                break;
+                            case BABA_TEXT:
+                                wall_is_baba = true;
+                                break;
+                            case ROCK_TEXT:
+                                wall_is_rock = true;
+                                break;
+                            case KILL_TEXT:
+                                wall_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                wall_is_sink = true;
+                                break;
+                            case WATER_TEXT:
+                                wall_is_water = true;
+                                break;
+                            case SKULL_TEXT:
+                                wall_is_skull = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }
+                else if(stage_block[i][j] == ROCK_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                rock_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                rock_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                rock_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                rock_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                rock_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                rock_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                rock_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                rock_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                rock_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                rock_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                rock_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                rock_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                rock_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                rock_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                rock_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                rock_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                rock_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                rock_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                rock_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                rock_is_sink = true;
+                                break;
+                            case SKULL_TEXT:
+                                rock_is_skull = true;
+                                break;
+                            case WATER_TEXT:
+                                rock_is_skull = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }else if(stage_block[i][j] == SKULL_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                skull_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                skull_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                skull_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                skull_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                skull_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                skull_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                skull_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                skull_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                skull_is_sink = true;
+                                break;
+                            case ROCK_TEXT:
+                                skull_is_rock = true;
+                                break;
+                            case WATER_TEXT:
+                                skull_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                skull_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                skull_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                skull_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                skull_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                skull_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                skull_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                skull_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                skull_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                skull_is_sink = true;
+                                break;
+                            case ROCK_TEXT:
+                                skull_is_rock = true;
+                                break;
+                            case WATER_TEXT:
+                                skull_is_water = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }else if(stage_block[i][j] == WATER_TEXT)
+                {
+                    if(stage_block[i+1][j] == IS_TEXT || stage_block[i][j+1] == IS_TEXT)
+                    {
+                        if(stage_block[i][j+1] == IS_TEXT)
+                        {
+                            switch(stage_block[i][j+2])
+                            {
+                            case STOP_TEXT:
+                                water_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                water_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                water_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                water_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                water_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                water_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                water_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                water_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                water_is_sink = true;
+                                break;
+                            case ROCK_TEXT:
+                                water_is_rock = true;
+                                break;
+                            case SKULL_TEXT:
+                                water_is_skull = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                        if(stage_block[i+1][j] == IS_TEXT)
+                        {
+
+                            switch(stage_block[i+2][j])
+                            {
+                            case STOP_TEXT:
+                                water_is_stop =true;
+                                break;
+                            case WIN_TEXT:
+                                water_is_win = true;
+                                break;
+                            case YOU_TEXT:
+                                water_is_you = true;
+                                break;
+                            case PUSH_TEXT:
+                                water_is_push = true;
+                                break;
+                            case FLAG_TEXT:
+                                water_is_flag = true;
+                                break;
+                            case WALL_TEXT:
+                                water_is_wall = true;
+                                break;
+                            case BABA_TEXT:
+                                water_is_baba = true;
+                                break;
+                            case KILL_TEXT:
+                                water_is_kill = true;
+                                break;
+                            case SINK_TEXT:
+                                water_is_sink = true;
+                                break;
+                            case ROCK_TEXT:
+                                water_is_rock = true;
+                                break;
+                            case SKULL_TEXT:
+                                water_is_skull = true;
+                                break;
+                            default:
+                                break;
+                            };
+                        }
+                    }
+                }
+                // Done for a block
+            }
+
+        }
 }

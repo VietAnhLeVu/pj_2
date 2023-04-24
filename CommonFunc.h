@@ -17,8 +17,8 @@
 #define MAX_HORIZONTAL_BLOCK 20
 #define MAX_VERTICAL_BLOCK 11
 #define MAX_BLOCK_TYPE 30
-#define DEFAULT_X 0
-#define DEFAULT_Y 0
+#define DEFAULT_X 320
+#define DEFAULT_Y 512
 #define DEFAULT_H 64
 #define DEFAULT_W 64
 
@@ -50,7 +50,7 @@ enum ObjectType
     SKULL_TEXT,
     SKULL,
     WATER,
-    BABA = 33,
+    BABA_TILE,
 };
 
 namespace SDL_CommonFunc
