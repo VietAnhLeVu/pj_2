@@ -1,14 +1,14 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = main.cpp LTexture.cpp LPiece.cpp LGame.cpp LRandom.cpp LScore.cpp LButton.cpp
+OBJS = main.cpp Texture.cpp game.cpp Object.cpp CommonFunc.cpp stage.cpp
 
 #CC specifies which compiler we're using
 CC = g++
 
 #INCLUDE_PATHS specifies the additional include paths we'll need
-INCLUDE_PATHS = -IC:/SDL2-dev/include/SDL2
+INCLUDE_PATHS = -IC:/SDL2_game_make/include/SDL2
 
 #LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -LC:/SDL2-dev/lib
+LIBRARY_PATHS = -LC:/SDL2_game_make/lib
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
@@ -20,7 +20,7 @@ COMPILER_FLAGS = -w
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 #OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = PuzzleGame.exe
+OBJ_NAME = MakingTheRule.exe
 
 #This is the target that compiles our executable
 all : $(OBJS)

@@ -8,7 +8,7 @@ class Object:public LTexture
 {
 public:
     Object();
-    ~Object();
+    ~Object(){;}
 
     enum MoveType
     {
@@ -108,7 +108,7 @@ private:
     int status;
     SDL_Rect pos;
     int action_type = -1;
-    bool Out_of_map;
+    bool Out_of_map = false;
 };
 
 #endif // OBJECT_H_

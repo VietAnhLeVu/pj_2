@@ -11,10 +11,6 @@ Object::Object()
 
 }
 
-Object::~Object()
-{
-
-}
 /*
 bool Object::loadFromFile(SDL_Renderer* gRenderer,std::string path,int clip)
 {
