@@ -4,7 +4,7 @@
 	<ActiveTarget name="Debug" />
 	<File name="game.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="338" topLine="23" />
+			<Cursor1 position="138" topLine="23" />
 		</Cursor>
 	</File>
 	<File name="CommonFunc.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -54,12 +54,12 @@
 	</File>
 	<File name="Object.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="89" topLine="96" />
+			<Cursor1 position="170" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="game.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="game.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4608" topLine="143" />
+			<Cursor1 position="4608" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="80" />
@@ -72,12 +72,12 @@
 			<Cursor1 position="4078" topLine="143" />
 		</Cursor>
 	</File>
-	<File name="Object.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Object.h" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1407" topLine="84" />
+			<Cursor1 position="161" topLine="5" />
 		</Cursor>
 	</File>
-	<Target name="Debug" top="game.cpp">
+	<Target name="Debug" top="Object.h">
 		<File name="main.cpp" />
 		<File name="stage.cpp" />
 		<File name="stage.h" />

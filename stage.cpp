@@ -2286,7 +2286,7 @@ void Stage::MoveStageTile(int ObjectType)
                                                 }
                                                 if(quit_loop)
                                                     break;
-                                                block_check--;
+                                                kill_block_check--;
                                             }
                                             if(kill_block_check == 0)
                                             {
