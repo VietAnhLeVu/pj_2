@@ -1,12 +1,5 @@
 #include "game.h"
 
-/*
-const int FPS = 12;
-const int DELAY_TIME = 1000 / FPS;
-Uint32 frameStart;
-Uint32 frameTime;
-*/
-
 
 
 
@@ -19,9 +12,13 @@ int main(int argc,char* argv[])
 		printf( "Failed to initialize!\n" );
 	}
 	else
-	{       //gameplay.music();
+	{       gameplay.music();
+	    while(!gameplay.Get_GameOut_Request())
+            {
+            gameplay.menu();
 			gameplay.running();
+            }
+            gameplay.close();
 	}
-    gameplay.close();
 	return 0;
 }

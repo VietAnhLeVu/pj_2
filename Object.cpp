@@ -3,8 +3,8 @@
 Object::Object()
 {
     frame = 0;
-    pos.x = DEFAULT_X;
-    pos.y = DEFAULT_Y;
+    pos.x = 0;
+    pos.y = 0;
     pos.h = DEFAULT_H;
     pos.w = DEFAULT_W;
     Out_of_map = false;

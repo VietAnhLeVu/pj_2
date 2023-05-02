@@ -16,9 +16,7 @@
 #define SCREEN_HEIGHT 704 // 11 block
 #define MAX_HORIZONTAL_BLOCK 20
 #define MAX_VERTICAL_BLOCK 11
-#define MAX_BLOCK_TYPE 30
-#define DEFAULT_X 320
-#define DEFAULT_Y 512
+#define MAX_BLOCK_TYPE 31
 #define DEFAULT_H 64
 #define DEFAULT_W 64
 
@@ -51,6 +49,12 @@ enum ObjectType
     SKULL,
     WATER,
     BABA_TILE,
+    BROKEN_BABA_TILE,
+    BROKEN_WALL,
+    BROKEN_FLAG,
+    BROKEN_ROCK,
+    BROKEN_WATER,
+    BROKEN_SKULL,
 };
 
 namespace SDL_CommonFunc

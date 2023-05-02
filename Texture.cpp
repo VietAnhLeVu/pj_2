@@ -146,3 +146,4 @@ bool LTexture::loadFromRenderedText( std::string textureText, SDL_Color textColo
 	//Return success
 	return mTexture != NULL;
 }
+

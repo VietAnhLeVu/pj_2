@@ -16,8 +16,23 @@ public:
     void close();
     void running();
     void music();
+    void menu();
+    void Sink_Sound_Effect();
+    void Kill_Sound_Effect();
+    bool Get_GameOut_Request()
+    {
+        return out_game;
+    }
 private:
 bool music_on =true;
+bool out_game = false;
+bool playing = false;
+bool  win = false;
+bool lost = false;
+bool next_stage = false;
+
+int playing_map;
+int Baba_char =1;
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 //The window renderer

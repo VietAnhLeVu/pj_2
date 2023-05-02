@@ -113,6 +113,9 @@ public:
     void CheckRule();
     bool CheckWin(Object& player,int ObjectType);
     void ChangeBlock(int ObjectType_src,int ObjectType_dst);
+    void ChangeBlockWithPos(Object& player,int ObjectType);
+    void EraseBrokenTile();
+    bool CheckAlive(int ObjectType);
     void ManipulateActionType(int src_action_type)
     {
         action_type = src_action_type;
@@ -121,12 +124,51 @@ public:
     {
         stage_block[x][y] = type;
     }
+    int Get_Pressed()
+    {
+        return pressed;
+    }
+    int GetDefaultX()
+    {
+        return DEFAULT_X;
+    }
+    int GetDefaultY()
+    {
+        return DEFAULT_Y;
+    }
+    bool CheckSunk()
+    {
+        bool res = sth_is_sunk;
+        sth_is_sunk = false;
+        return res;
+    }
+    bool CheckKill()
+    {
+        bool res = sth_is_killed;
+        sth_is_killed =false;
+        return res;
+    }
+    void CheckStageMovingWin(int now_x,int now_y,int block_check);
+    bool CheckStageWin()
+    {
+        return win;
+    }
+    void ResetStageWin()
+    {
+        win = false;
+    }
 private:
+    bool sth_is_sunk = false;
+    bool sth_is_killed = false;
+    bool win = false;
     int action_type = -1;
     Tile_type block[MAX_BLOCK_TYPE];
     int stage_block[11][20];
     SDL_Rect stage_block_rect[11][20];
     SDL_Rect dest;
+    int pressed = 0;
+    int DEFAULT_X;
+    int DEFAULT_Y;
 };
 
 #endif // STAGE_H_

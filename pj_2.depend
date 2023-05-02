@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1681714267 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\main.cpp
+1683007190 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\main.cpp
 	"game.h"
 
-1682258755 c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.h
+1682824536 c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.h
 	"CommonFunc.h"
 
-1682307238 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
+1682952202 c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -17,17 +17,17 @@
 	<algorithm>
 	<SDL_mixer.h>
 
-1682303817 c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.h
+1682824792 c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.h
 	"Texture.h"
 	"CommonFunc.h"
 
-1682307647 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.cpp
+1682905881 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\object.cpp
 	"Object.h"
 
 1679813586 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\commonfunc.cpp
 	"CommonFunc.h"
 
-1679885002 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.cpp
+1682824632 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\texture.cpp
 	"Texture.h"
 
 1681436167 c:\mingw\bin\c++\do hoa\pj_2\pj_2\timer.h
@@ -41,10 +41,10 @@
 1679812099 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\menu.cpp
 	"menu.h"
 
-1682309918 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
+1683009315 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.cpp
 	"stage.h"
 
-1682309918 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
+1682999234 c:\mingw\bin\c++\do hoa\pj_2\pj_2\stage.h
 	"CommonFunc.h"
 	"Texture.h"
 	"Object.h"
@@ -57,10 +57,10 @@
 	"stage.h"
 	"Object.h"
 
-1682309666 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.cpp
+1683016072 source:c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.cpp
 	"game.h"
 
-1682062743 c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.h
+1682951007 c:\mingw\bin\c++\do hoa\pj_2\pj_2\game.h
 	"Texture.h"
 	"CommonFunc.h"
 	"Object.h"

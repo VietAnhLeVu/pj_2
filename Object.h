@@ -53,6 +53,14 @@ public:
     {
         pos.y = y;
     }
+    void SetWidth(float w)
+    {
+        pos.w = w;
+    }
+    void SetHeight(float h)
+    {
+        pos.h = h;
+    }
     int GetActionType()
     {
         return action_type;
@@ -65,7 +73,7 @@ public:
 
     SDL_Rect* GetSpriteClips();
 
-virtual void HandleEvent(SDL_Event& e);
+    void HandleEvent(SDL_Event& e);
 
     void MoveObject();
 
