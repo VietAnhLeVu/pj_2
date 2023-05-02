@@ -583,6 +583,11 @@ void Game::running()
                     {
                         lost = true;
                     }
+                    // Definitely win
+                    if(lvl_1.baba_is_win)
+                    {
+                    win = true;
+                    }
                     if(lvl_1.baba_is_kill || lvl_1.baba_is_sink)
                     {
                         lvl_1.ChangeBlock(BABA_TILE,BROKEN_BABA_TILE);
@@ -596,11 +601,6 @@ void Game::running()
                             Kill_Sound_Effect();
                         }
                         lost = true;
-                    }
-                    // Definitely win
-                    if(lvl_1.baba_is_win)
-                    {
-                        win = true;
                     }
                     if(baba.Get_Out_Of_Map())
                     {
@@ -979,6 +979,7 @@ void Game::running()
                 }
 
             }
+
     if(lvl_1.CheckSunk())
     {
         Sink_Sound_Effect();
@@ -987,6 +988,22 @@ void Game::running()
     {
         Kill_Sound_Effect();
     }
+    //render win stage panel
+            if(win && !lost)
+            {   if(playing_map == 10)
+                {
+                    win_stage.loadFromFile(gRenderer,"resource/last_map_win.png");
+                }
+                win_stage.render(win_stage.GetX(),win_stage.GetY(),gRenderer);
+                SDL_RenderPresent(gRenderer);
+            }
+            // render lost stage panel
+            if(lost)
+            {
+                lost_stage.render(lost_stage.GetX(),lost_stage.GetY(),gRenderer);
+                SDL_RenderPresent(gRenderer);
+            }
+
     if(quit || win)
             {
                 break;
@@ -997,16 +1014,7 @@ void Game::running()
                 lvl_1.CheckStagePush(baba,BABA_TILE);
             }
 
-
-
 // Manipulate rule for flag
-            if(lvl_1.flag_is_win)
-            {
-                if(lvl_1.CheckWin(baba,FLAG))
-                {
-                    win = true;
-                }
-            }
             if(lvl_1.flag_is_stop && lvl_1.baba_is_you)
             {
                 lvl_1.CheckStageCollision(baba,FLAG);
@@ -1057,17 +1065,15 @@ void Game::running()
                     baba.SetY(-9999);
                     Kill_Sound_Effect();
                 }
+            }else if(lvl_1.flag_is_win)
+            {
+                if(lvl_1.CheckWin(baba,FLAG))
+                {
+                    win = true;
+                }
             }
 
             // Manipulate the rule for the wall
-            if(lvl_1.wall_is_win)
-            {
-                for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
-                    if(lvl_1.CheckWin(baba,wall_object))
-                    {
-                        win = true;
-                    }
-            }
             if(lvl_1.wall_is_stop && lvl_1.baba_is_you)
             {
                 for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
@@ -1130,16 +1136,16 @@ void Game::running()
                     Kill_Sound_Effect();
                     }
                 }
+            }else if(lvl_1.wall_is_win)
+            {
+                for(int wall_object = HORIZONTAL_WALL; wall_object<=WALL_BLOCK; wall_object++)
+                    if(lvl_1.CheckWin(baba,wall_object))
+                    {
+                        win = true;
+                    }
             }
 
 // Manipulate the rule for the rock
-            if(lvl_1.rock_is_win)
-            {
-                if(lvl_1.CheckWin(baba,ROCK))
-                {
-                    win = true;
-                }
-            }
             if(lvl_1.rock_is_stop && lvl_1.baba_is_you)
             {
                 lvl_1.CheckStageCollision(baba,ROCK);
@@ -1189,15 +1195,14 @@ void Game::running()
                     baba.SetY(-9999);
                     Kill_Sound_Effect();
                 }
-            }
-// Manipulate the rule for the water
-            if(lvl_1.water_is_win)
+            }else if(lvl_1.rock_is_win)
             {
-                if(lvl_1.CheckWin(baba,WATER))
+                if(lvl_1.CheckWin(baba,ROCK))
                 {
                     win = true;
                 }
             }
+// Manipulate the rule for the water
             if(lvl_1.water_is_stop && lvl_1.baba_is_you)
             {
                 lvl_1.CheckStageCollision(baba,WATER);
@@ -1247,15 +1252,14 @@ void Game::running()
                     baba.SetY(-9999);
                     Kill_Sound_Effect();
                 }
-            }
-// Manipulate the rule for the skull
-            if(lvl_1.skull_is_win)
+            }else if(lvl_1.water_is_win)
             {
-                if(lvl_1.CheckWin(baba,SKULL))
+                if(lvl_1.CheckWin(baba,WATER))
                 {
                     win = true;
                 }
             }
+// Manipulate the rule for the skull
             if(lvl_1.skull_is_stop && lvl_1.baba_is_you)
             {
                 lvl_1.CheckStageCollision(baba,SKULL);
@@ -1305,6 +1309,12 @@ void Game::running()
                     baba.SetY(-9999);
                     Kill_Sound_Effect();
                 }
+            }else if(lvl_1.skull_is_win)
+            {
+                if(lvl_1.CheckWin(baba,SKULL))
+                {
+                    win = true;
+                }
             }
 
             // Move the text
@@ -1342,19 +1352,7 @@ void Game::running()
                 baba.render(baba.GetX(),baba.GetY(),gRenderer,&one_frame);
             }
 
-            //render win stage panel
-            if(win && !lost)
-            {   if(playing_map == 10)
-                {
-                    win_stage.loadFromFile(gRenderer,"resource/last_map_win.png");
-                }
-                win_stage.render(win_stage.GetX(),win_stage.GetY(),gRenderer);
-            }
-            // render lost stage panel
-            if(lost)
-            {
-                lost_stage.render(lost_stage.GetX(),lost_stage.GetY(),gRenderer);
-            }
+
             //render return button
             return_menu_button.render(return_menu_button.GetX(),return_menu_button.GetY(),gRenderer);
             //Update screen

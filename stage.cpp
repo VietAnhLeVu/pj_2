@@ -1393,7 +1393,7 @@ void Stage::HandleEvent(SDL_Event& e)
 
 void Stage::MoveStageTile(int ObjectType)
 {
-    bool cant_kill = false;
+
     switch(action_type)
     {
     case MOVERIGHT:
@@ -1401,6 +1401,7 @@ void Stage::MoveStageTile(int ObjectType)
         {
             for(int j = MAX_HORIZONTAL_BLOCK-1; j>=0; j--)
             {
+                bool cant_kill = false;
                 if(ObjectType == WALL_BLOCK)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
@@ -2741,6 +2742,7 @@ void Stage::MoveStageTile(int ObjectType)
         {
             for(int j = 0; j<MAX_HORIZONTAL_BLOCK; j++)
             {
+                bool cant_kill = false;
                 if(ObjectType == WALL_BLOCK)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
@@ -4096,6 +4098,7 @@ void Stage::MoveStageTile(int ObjectType)
         {
             for(int j = 0; j<MAX_HORIZONTAL_BLOCK; j++)
             {
+                bool cant_kill = false;
                 if(ObjectType == WALL_BLOCK)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
@@ -5441,6 +5444,7 @@ void Stage::MoveStageTile(int ObjectType)
         {
             for(int j = MAX_HORIZONTAL_BLOCK-1; j>=0; j--)
             {
+                bool cant_kill = false;
                 if(ObjectType == WALL_BLOCK)
                 {
                     if(stage_block[i][j] >= HORIZONTAL_WALL && stage_block[i][j] <= WALL_BLOCK)
@@ -7278,7 +7282,7 @@ void Stage::CheckRule()
                             rock_is_skull = true;
                             break;
                         case WATER_TEXT:
-                            rock_is_skull = true;
+                            rock_is_water = true;
                             break;
                         default:
                             break;
