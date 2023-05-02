@@ -33,14 +33,14 @@ bool Object::loadFromFile(SDL_Renderer* gRenderer,std::string path,int clip)
 void Object::MakeSpriteClip(int clip)
 {
     for(int i = 0; i<clip; i++)
-        {
-            SDL_Rect* temp = new SDL_Rect;
-            temp->w = 64;
-            temp->h = 64;
-            temp->x = i*64;
-            temp->y = 0;
-            SpriteClips.push_back(temp);
-        }
+    {
+        SDL_Rect* temp = new SDL_Rect;
+        temp->w = 64;
+        temp->h = 64;
+        temp->x = i*64;
+        temp->y = 0;
+        SpriteClips.push_back(temp);
+    }
 }
 
 SDL_Rect* Object::GetSpriteClips()
@@ -108,7 +108,7 @@ void Object::HandleEvent(SDL_Event& e)
             }
         }
     }
-    else if(e.type == SDL_KEYUP)
+    else /*if(e.type == SDL_KEYUP)*/
     {
         if(action_type != -1)
         {
@@ -124,19 +124,19 @@ void Object::MoveObject()
     {
     case MOVERIGHT:
         if(pos.x < SCREEN_WIDTH -64)
-        pos.x+=64;
+            pos.x+=64;
         break;
     case MOVELEFT:
         if(pos.x > 0)
-        pos.x-=64;
+            pos.x-=64;
         break;
     case MOVEUP:
         if(pos.y > 0)
-        pos.y-=64;
+            pos.y-=64;
         break;
     case MOVEDOWN:
         if(pos.y < SCREEN_HEIGHT-64)
-        pos.y+=64;
+            pos.y+=64;
         break;
     default:
         break;

@@ -622,7 +622,7 @@ void Game::running()
                     }
 
                     // Manipulate baba frame
-                    if(baba.GetActionType() != -1)
+                    if(baba.GetActionType() != -1 && baba.Get_Pressed() == 1)
                         baba.IncreaseFrame();
                     if(baba.GetFrame() > 11)
                     {
@@ -988,6 +988,11 @@ void Game::running()
     {
         Kill_Sound_Effect();
     }
+    // Check win for stage move
+            if(lvl_1.CheckStageWin())
+            {
+                win = true;
+            }
     //render win stage panel
             if(win && !lost)
             {   if(playing_map == 10)
@@ -1004,7 +1009,7 @@ void Game::running()
                 SDL_RenderPresent(gRenderer);
             }
 
-    if(quit || win)
+    if(quit || win || lost)
             {
                 break;
             }
@@ -1321,11 +1326,6 @@ void Game::running()
             for(int p = IS_TEXT; p<=SKULL_TEXT; p++)
             {
                 lvl_1.CheckStagePush(baba,p);
-            }
-            // Check win for stage move
-            if(lvl_1.CheckStageWin())
-            {
-                win = true;
             }
             //Clear screen
             SDL_SetRenderDrawColor( gRenderer, 75, 92, 28, 0xFF );
